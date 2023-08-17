@@ -1,0 +1,39 @@
+.delete-user-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: #fff;
+    font-family: 'Times New Roman', 'Arial', sans-serif;
+    color: #000;
+    padding: 2rem;
+  }
+
+  .delete-user-container label {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+  
+  .delete-form {
+    margin-top: 1rem;
+  }
+  
+  .delete-button {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px 20px;
+    font-family: 'Times New Roman', 'Arial', sans-serif;
+    font-size: 2rem;
+    color: #000;
+    background-color: #fff;
+    border: 2px solid #000;
+    border-radius: 5px;
+    text-decoration: none;
+  }
+  
+  .delete-button:hover {
+    background-color: #000;
+    color: #fff;
+  }
+  

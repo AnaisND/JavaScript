@@ -1,0 +1,39 @@
+.room-list-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: #fff;
+    font-family: 'Times New Roman', 'Arial', sans-serif;
+    color: #000;
+    padding: 2rem;
+  }
+  
+  .room-list-container div {
+    margin-bottom: 7rem;
+  }
+  
+  .room-list-container p {
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+  }
+  
+  .room-list-container button {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px 20px;
+    font-family: 'Times New Roman', 'Arial', sans-serif;
+    font-size: 1.7rem;
+    color: #000;
+    background-color: #fff;
+    border: 2px solid #000;
+    border-radius: 5px;
+    text-decoration: none;
+  }
+  
+  .room-list-container button:hover {
+    background-color: #000;
+    color: #fff;
+  }
+  

@@ -1,0 +1,34 @@
+.get-user-form-container {
+    background-color: #fff;
+    color: #000;
+    font-family: 'Times New Roman', 'Arial', sans-serif;
+    font-size: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 70rem;
+  }
+  
+  .get-user-form-container h1 {
+    font-size: 3.7rem;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  
+  .get-user-form-container p {
+    font-size: 1.7rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
+
+  .imgg {
+    margin-right: 20px;
+  }
+
+  .imggg {
+    width: 700px;
+    height: auto;
+    border: 1.5px solid #000;
+  }
+  

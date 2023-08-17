@@ -1,0 +1,49 @@
+#mynavbar {
+    display: flex;
+    align-items: left;
+    justify-content: space-between;
+    background-color: #000;
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+    height: 100px;
+    border-radius: 0px;
+  }
+
+  #mynavbar .nav {
+    margin-left: auto;
+  }
+
+  #mynavbar .nav-link {
+    margin-right: 50px; 
+
+  }
+  
+  #mynavbar-brand {
+    color: #fff;
+    font-family: 'Times New Roman', 'Arial', sans-serif;
+    font-size: 4rem;
+    margin-left: auto;
+  }
+  
+  #mynavbar-link1,
+  #mynavbar-link2,
+  #mynavbar-link3,
+  #mynavbar-link4,
+  #mynavbar-link5
+  {
+  color: #fff;
+  font-family: 'Times New Roman', 'Arial', sans-serif;
+  font-size: 1.8rem;
+  margin-right: 1rem;
+  text-decoration: none;
+  transition: color 0.1s;
+  border-radius: 5px;
+  }
+
+  #mynavbar .nav-link:hover {
+    margin: 4px;
+    padding: 4px 8px;
+    background-color: #fff;
+    color: #000; 
+    border-radius: 5px;
+  }
