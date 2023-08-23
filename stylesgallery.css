@@ -1,0 +1,116 @@
+body, h1, h2 {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background-color: black;
+    color: white;
+    font-size: medium;
+    font-family: "Poppins", sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+#four {
+    text-align: center;
+    font-size: 38px;
+    margin-bottom: 45px;
+    font-style: italic;
+}
+
+#link41 {
+    text-decoration: none;
+    display: inline-block;
+}
+
+#link42 {
+    text-decoration: none;
+    display: inline-block;
+}
+
+#link43 {
+    text-decoration: none;
+    display: inline-block;
+}
+
+#link44 {
+    text-decoration: none;
+    display: inline-block;
+}
+
+#buton41 {
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: inherit;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 10px;
+    align-self: center;
+}
+
+#buton41:hover {
+    background-color: white;
+    color: black;
+}
+
+#buton42 {
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: inherit;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 10px;
+    align-self: center;
+}
+
+#buton42:hover {
+    background-color: white;
+    color: black;
+}
+
+#buton43 {
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: inherit;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 10px;
+    align-self: center;
+}
+
+#buton43:hover {
+    background-color: white;
+    color: black;
+}
+
+#buton44 {
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: inherit;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 25px;
+    align-self: center;
+}
+
+#buton44:hover {
+    background-color: white;
+    color: black;
+}
