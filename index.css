@@ -1,0 +1,31 @@
+body {
+    background-color: #e6e6fa;
+    color: #6a5acd;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    background-color: white;
+    padding: 20px;
+    margin: 20% auto;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #6a5acd;
+}
+
+.main-button {
+    background-color: #6a5acd;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    margin: 5px;
+}
+
+a {
+    text-decoration: none;
+}

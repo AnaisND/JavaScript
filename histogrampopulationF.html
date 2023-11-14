@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Histogram Chart Female Population</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    .toggle-button {
+      display: inline-block;
+      padding: 10px;
+      background-color: #6a5acd;
+      color: #e6e6fa;
+      cursor: pointer;
+      user-select: none;
+    }
+    .toggle-button.selected {
+      background-color: #e6e6fa;
+      color: #6a5acd;
+    }
+  </style>
+</head>
+<body>
+  <h2>Select a Country:</h2>
+  <div class="toggle-button" id="countryBE">BE</div>
+  <div class="toggle-button" id="countryBG">BG</div>
+  <div class="toggle-button" id="countryCZ">CZ</div>
+  <div class="toggle-button" id="countryDK">DK</div>
+  <div class="toggle-button" id="countryDE">DE</div>
+  <div class="toggle-button" id="countryEE">EE</div>
+  <div class="toggle-button" id="countryIE">IE</div>
+  <div class="toggle-button" id="countryEL">EL</div>
+  <div class="toggle-button" id="countryES">ES</div>
+  <div class="toggle-button" id="countryFR">FR</div>
+  <div class="toggle-button" id="countryHR">HR</div>
+  <div class="toggle-button" id="countryIT">IT</div>
+  <div class="toggle-button" id="countryCY">CY</div>
+  <div class="toggle-button" id="countryLV">LV</div>
+  <div class="toggle-button" id="countryLT">LT</div>
+  <div class="toggle-button" id="countryLU">LU</div>
+  <div class="toggle-button" id="countryHU">HU</div>
+  <div class="toggle-button" id="countryMT">MT</div>
+  <div class="toggle-button" id="countryNL">NL</div>
+  <div class="toggle-button" id="countryAT">AT</div>
+  <div class="toggle-button" id="countryPL">PL</div>
+  <div class="toggle-button" id="countryPT">PT</div>
+  <div class="toggle-button" id="countryRO">RO</div>
+  <div class="toggle-button" id="countrySI">SI</div>
+  <div class="toggle-button" id="countrySK">SK</div>
+  <div class="toggle-button" id="countryFI">FI</div>
+  <div class="toggle-button" id="countrySE">SE</div>
+
+
+  <canvas id="histogramChart" width="1000" height="500"></canvas>
+
+  <script>
+    const ctx = document.getElementById("histogramChart").getContext("2d");
+    let currentChart;
+
+    function fetchAndDisplayData(country) {
+      const apiUrlBase = `https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/demo_pjan?sex=F&age=TOTAL&time=2000&time=2001&time=2002&time=2003&time=2004&time=2005&time=2006&time=2007&time=2008&time=2009&time=2010&time=2011&time=2012&time=2013&time=2014&time=2015&time=2016&time=2017&time=2018&geo=${country}`;
+
+      fetch(apiUrlBase)
+        .then((response) => response.json())
+        .then((jsonData) => {
+          if (currentChart) {
+            currentChart.destroy();
+          }
+
+          const values = Object.values(jsonData.value);
+
+          currentChart = new Chart(ctx, {
+            type: "bar",
+            data: {
+              labels: Object.keys(jsonData.value),
+              datasets: [{
+                label: "Female Population",
+                data: values,
+                backgroundColor: "rgba(230, 230, 250, 1)",
+                borderColor: "rgba(230, 230, 250, 1)",
+                borderWidth: 1,
+              }],
+            },
+            options: {
+              responsive: false,
+              maintainAspectRatio: false,
+              scales: {
+                x: {
+                  title: { display: true, text: "Years (2000-2018)" }
+                },
+                y: {
+                  title: { display: true, text: `Female Population in ${country}` }
+                }
+              },
+            },
+          });
+        })
+        .catch((error) => console.error("Error fetching or processing data:", error));
+    }
+
+    const toggleButtons = document.querySelectorAll('.toggle-button');
+    toggleButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        toggleButtons.forEach(btn => btn.classList.remove('selected'));
+        button.classList.add('selected');
+        const selectedCountry = button.id.replace("country", "");
+        fetchAndDisplayData(selectedCountry);
+      });
+    });
+  </script>
+</body>
+</html>

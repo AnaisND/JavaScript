@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chart</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    .toggle-button {
+      display: inline-block;
+      padding: 10px;
+      background-color: #6a5acd;
+      color: #e6e6fa;
+      cursor: pointer;
+      user-select: none;
+    }
+    .toggle-button.selected {
+      background-color: #e6e6fa;
+      color: #6a5acd;
+    }
+  </style>
+</head>
+<body>
+  <h2>Select a Year:</h2>
+  <div class="toggle-button" id="year2000">2000</div>
+  <div class="toggle-button" id="year2001">2001</div>
+  <div class="toggle-button" id="year2002">2002</div>
+  <div class="toggle-button" id="year2003">2003</div>
+  <div class="toggle-button" id="year2004">2004</div>
+  <div class="toggle-button" id="year2005">2005</div>
+  <div class="toggle-button" id="year2006">2006</div>
+  <div class="toggle-button" id="year2007">2007</div>
+  <div class="toggle-button" id="year2008">2008</div>
+  <div class="toggle-button" id="year2009">2009</div>
+  <div class="toggle-button" id="year2010">2010</div>
+  <div class="toggle-button" id="year2011">2011</div>
+  <div class="toggle-button" id="year2012">2012</div>
+  <div class="toggle-button" id="year2013">2013</div>
+  <div class="toggle-button" id="year2014">2014</div>
+  <div class="toggle-button" id="year2015">2015</div>
+  <div class="toggle-button" id="year2016">2016</div>
+  <div class="toggle-button" id="year2017">2017</div>
+  <div class="toggle-button" id="year2018">2018</div>
+
+  <table id="excelChart" border="1"></table>
+
+  <script>
+    const lineLabels = ["BE", "BG", "CZ", "DK", "DE", "EE", "IE", "EL", "ES", "FR", "HR", "IT", "CY", "LV", "LT", "LU", "HU", "MT", "NL", "AT", "PL", "PT", "RO", "SI", "SK", "FI", "SE"];
+    const columnLabels = ["Life Expectancy M", "Life Expectancy F", "GDP", "Population M", "Population F"];
+
+    const baseUrls = [
+      "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/demo_mlexpec?sex=M&age=Y1&time={year}&geo=",
+      "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/demo_mlexpec?sex=F&age=Y1&time={year}&geo=",
+      "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/sdg_08_10?na_item=B1GQ&unit=CLV10_EUR_HAB&time={year}&geo=",
+      "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/demo_pjan?sex=M&age=TOTAL&time={year}&geo=",
+      "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/demo_pjan?sex=F&age=TOTAL&time={year}&geo=",
+    ];
+
+    const lastTwoLetters = ["BE", "BG", "CZ", "DK", "DE", "EE", "IE", "EL", "ES", "FR", "HR", "IT", "CY", "LV", "LT", "LU", "HU", "MT", "NL", "AT", "PL", "PT", "RO", "SI", "SK", "FI", "SE"];
+
+    const table = document.getElementById("excelChart");
+    const thead = document.createElement("thead");
+    const tbody = document.createElement("tbody");
+
+    const headerRow = document.createElement("tr");
+    for (const label of ["", ...columnLabels]) {
+      const th = document.createElement("th");
+      th.appendChild(document.createTextNode(label));
+      headerRow.appendChild(th);
+    }
+    thead.appendChild(headerRow);
+
+    for (let i = 0; i < lineLabels.length; i++) {
+      const row = document.createElement("tr");
+      const lineLabel = document.createElement("th");
+      lineLabel.appendChild(document.createTextNode(lineLabels[i]));
+      row.appendChild(lineLabel);
+
+      for (let j = 0; j < columnLabels.length; j++) {
+        const cell = document.createElement("td");
+        cell.appendChild(document.createTextNode("Loading..."));
+        row.appendChild(cell);
+      }
+      tbody.appendChild(row);
+    }
+
+    table.appendChild(thead);
+    table.appendChild(tbody);
+
+    function fetchDataAndPopulateColumn(year) {
+      for (let i = 0; i < lineLabels.length; i++) {
+        for (let j = 0; j < columnLabels.length; j++) {
+          const url = baseUrls[j].replace("{year}", year) + lastTwoLetters[i];
+          fetch(url)
+            .then((response) => response.json())
+            .then((jsonData) => {
+              const values = Object.values(jsonData.value);
+              const cell = table.rows[i + 1].cells[j + 1];
+              cell.textContent = values[0];
+            })
+            .catch((error) => console.error("Error fetching or processing data:", error));
+        }
+      }
+    }
+
+    const toggleButtons = document.querySelectorAll('.toggle-button');
+    toggleButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        toggleButtons.forEach(btn => btn.classList.remove('selected'));
+        button.classList.add('selected');
+        const selectedYear = button.textContent;
+        fetchDataAndPopulateColumn(selectedYear);
+      });
+    });
+  </script>
+</body>
+</html>
