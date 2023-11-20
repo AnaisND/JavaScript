@@ -1,0 +1,61 @@
+CREATE TABLE Student (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255),
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE Note (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    userid INT,
+    name VARCHAR(255),
+    date DATE,
+    text TEXT,
+    coursename VARCHAR(255),
+    FOREIGN KEY (userid) REFERENCES Student(id) ON DELETE CASCADE
+);
+
+CREATE TABLE Tag (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    noteid INT,
+    tagtext VARCHAR(255),
+    FOREIGN KEY (noteid) REFERENCES Note(id) ON DELETE CASCADE
+);
+
+CREATE TABLE Attachment (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    noteid INT,
+    name VARCHAR(255),
+    file LONGBLOB,
+    file_extension VARCHAR(10),
+    FOREIGN KEY (noteid) REFERENCES Note(id) ON DELETE CASCADE
+);
+
+CREATE TABLE Studygroup (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    creatoruserid INT,
+    name VARCHAR(255),
+    FOREIGN KEY (creatoruserid) REFERENCES Student(id) ON DELETE CASCADE
+);
+
+CREATE TABLE Participant (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    groupid INT,
+    userid INT,
+    UNIQUE(groupid, userid),
+    FOREIGN KEY (groupid) REFERENCES Studygroup(id) ON DELETE CASCADE,
+    FOREIGN KEY (userid) REFERENCES Student(id) ON DELETE CASCADE
+);
+
+CREATE TABLE Groupnote (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    groupid INT,
+    name VARCHAR(255),
+    text TEXT,
+    FOREIGN KEY (groupid) REFERENCES Studygroup(id) ON DELETE CASCADE
+);
+
+user "root" -> laptedesoia
+MYDATABASE;
+
+
